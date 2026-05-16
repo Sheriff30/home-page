@@ -169,7 +169,7 @@ console.log("Website loaded successfully!");
   ).matches;
 
   // --- Hero load-in timeline ---
-  if (!reduceMotion) {
+  if (!reduceMotion && document.querySelector(".hero")) {
     const tl = gsap.timeline({
       defaults: { ease: "power3.out", duration: 0.85 },
     });
@@ -185,6 +185,35 @@ console.log("Website loaded successfully!");
       )
       .from(".hero-card-community", { x: 60, opacity: 0 }, "-=0.5")
       .from(".hero-card-students", { x: -60, opacity: 0 }, "-=0.65");
+  }
+
+  // --- Product hero load-in timeline ---
+  if (!reduceMotion && document.querySelector(".product-hero")) {
+    gsap.set(".phero-circle", { xPercent: -50, yPercent: -50 });
+    const ptl = gsap.timeline({
+      defaults: { ease: "power3.out", duration: 0.85 },
+    });
+    ptl
+      .from(".phero-left h1", { y: 44, opacity: 0 })
+      .from(".phero-left p", { y: 30, opacity: 0 }, "-=0.6")
+      .from(".phero-btn", { y: 26, opacity: 0, stagger: 0.12 }, "-=0.55")
+      .from(".phero-circle", { scale: 0.5, opacity: 0, duration: 1.1 }, "-=0.7")
+      .from(".phero-img", { y: 64, opacity: 0, duration: 1 }, "-=1")
+      .from(
+        ".phero-badge",
+        { scale: 0, opacity: 0, duration: 0.7, ease: "back.out(1.7)" },
+        "-=0.4"
+      )
+      .from(
+        ".phero-card-stories",
+        { x: 60, opacity: 0, duration: 0.7, ease: "back.out(1.4)" },
+        "-=0.45"
+      )
+      .from(
+        ".phero-card-certified",
+        { x: -60, opacity: 0, duration: 0.7, ease: "back.out(1.4)" },
+        "-=0.55"
+      );
   }
 
   // --- Hero mouse parallax (desktop only) ---
@@ -217,6 +246,47 @@ console.log("Website loaded successfully!");
     });
     heroVisual.addEventListener("mouseleave", function () {
       layers.forEach(function (layer) {
+        gsap.to(layer.sel, {
+          x: 0,
+          y: 0,
+          duration: 0.9,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      });
+    });
+  }
+
+  // --- Product hero mouse parallax (desktop only) ---
+  const pheroVisual = document.querySelector(".phero-visual");
+  if (
+    pheroVisual &&
+    !reduceMotion &&
+    window.matchMedia("(min-width: 1100px)").matches
+  ) {
+    const pLayers = [
+      { sel: ".phero-circle", depth: 16 },
+      { sel: ".phero-img", depth: 8 },
+      { sel: ".phero-badge", depth: 38 },
+      { sel: ".phero-card-stories", depth: 26 },
+      { sel: ".phero-card-certified", depth: 30 },
+    ];
+    pheroVisual.addEventListener("mousemove", function (e) {
+      const rect = pheroVisual.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width - 0.5;
+      const py = (e.clientY - rect.top) / rect.height - 0.5;
+      pLayers.forEach(function (layer) {
+        gsap.to(layer.sel, {
+          x: -px * layer.depth,
+          y: -py * layer.depth,
+          duration: 0.7,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      });
+    });
+    pheroVisual.addEventListener("mouseleave", function () {
+      pLayers.forEach(function (layer) {
         gsap.to(layer.sel, {
           x: 0,
           y: 0,
@@ -314,6 +384,18 @@ console.log("Website loaded successfully!");
     // Footer
     { sel: ".site-footer .footer-top", from: { opacity: 0, y: 40 } },
     { sel: ".site-footer .footer-bottom", from: { opacity: 0, y: 20 } },
+
+    // Product page — Section 2 (intro): heading slides from the left, paragraph rises
+    { sel: ".prod-intro .pi-heading", from: { opacity: 0, x: -60 } },
+    { sel: ".prod-intro .pi-text", from: { opacity: 0, y: 44 } },
+
+    // Product page — Section 3 (courses): course panel pops in, FAQ glides from the right
+    {
+      sel: ".prod-courses .pcr-courses",
+      from: { opacity: 0, scale: 0.9 },
+      ease: "back.out(1.4)",
+    },
+    { sel: ".prod-courses .pcr-faq", from: { opacity: 0, x: 70 } },
   ];
 
   const NEUTRAL = { opacity: 1, x: 0, y: 0, scale: 1, rotation: 0 };
@@ -366,6 +448,53 @@ console.log("Website loaded successfully!");
           overwrite: true,
         });
       },
+    });
+  });
+})();
+
+// Course carousel + FAQ accordion (product page)
+(function () {
+  // --- Course carousel (looping) ---
+  document.querySelectorAll("[data-carousel]").forEach(function (root) {
+    const track = root.querySelector("[data-carousel-track]");
+    const prev = root.querySelector("[data-carousel-prev]");
+    const next = root.querySelector("[data-carousel-next]");
+    if (!track || track.children.length === 0) return;
+    const slides = track.children;
+    let index = 0;
+
+    function update() {
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      const step = slides[0].getBoundingClientRect().width + gap;
+      track.style.transform = "translateX(" + -index * step + "px)";
+    }
+
+    if (prev)
+      prev.addEventListener("click", function () {
+        index = (index - 1 + slides.length) % slides.length;
+        update();
+      });
+    if (next)
+      next.addEventListener("click", function () {
+        index = (index + 1) % slides.length;
+        update();
+      });
+    window.addEventListener("resize", update);
+    update();
+  });
+
+  // --- FAQ accordion (one panel open at a time) ---
+  document.querySelectorAll(".pcr-faq-q").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const item = btn.closest(".pcr-faq-item");
+      if (!item) return;
+      const wasOpen = item.classList.contains("is-open");
+      const list = item.closest(".pcr-faq-list");
+      if (list)
+        list.querySelectorAll(".pcr-faq-item.is-open").forEach(function (o) {
+          o.classList.remove("is-open");
+        });
+      if (!wasOpen) item.classList.add("is-open");
     });
   });
 })();
