@@ -428,6 +428,14 @@ console.log("Website loaded successfully!");
       ease: "back.out(1.4)",
       stagger: 0.13,
     },
+
+    // Product page — Section 7 (testimonials): title drops in from above, carousel zooms in
+    { sel: ".prod-testimonials .tm-title", from: { opacity: 0, y: -36 } },
+    {
+      sel: ".prod-testimonials .tm-carousel",
+      from: { opacity: 0, scale: 0.88 },
+      ease: "power3.out",
+    },
   ];
 
   const NEUTRAL = { opacity: 1, x: 0, y: 0, scale: 1, rotation: 0 };
@@ -582,5 +590,36 @@ console.log("Website loaded successfully!");
         }
       });
     });
+  });
+})();
+
+// Testimonials carousel (product page) — loops, dims the non-active card
+(function () {
+  document.querySelectorAll("[data-tm-carousel]").forEach(function (root) {
+    const track = root.querySelector("[data-tm-track]");
+    const prev = root.querySelector("[data-tm-prev]");
+    const next = root.querySelector("[data-tm-next]");
+    if (!track || track.children.length === 0) return;
+    const cards = track.children;
+    let index = 0;
+
+    function render() {
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      const slideW = cards[0].getBoundingClientRect().width + gap;
+      track.style.transform = "translateX(" + -index * slideW + "px)";
+      for (let i = 0; i < cards.length; i++) {
+        cards[i].classList.toggle("is-active", i === index);
+      }
+    }
+
+    function go(dir) {
+      index = (index + dir + cards.length) % cards.length;
+      render();
+    }
+
+    if (prev) prev.addEventListener("click", function () { go(-1); });
+    if (next) next.addEventListener("click", function () { go(1); });
+    window.addEventListener("resize", render);
+    render();
   });
 })();
