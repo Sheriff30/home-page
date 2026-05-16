@@ -664,3 +664,77 @@ console.log("Website loaded successfully!");
     }
   });
 })();
+
+// Header dropdown submenu (desktop) — hover to reveal
+(function () {
+  const nav = document.querySelector("header nav");
+  if (!nav) return;
+  const submenu = nav.querySelector(".nav-submenu");
+  const triggers = nav.querySelectorAll("li.has-dropdown");
+  if (!submenu || !triggers.length) return;
+
+  let hideTimer;
+
+  function open() {
+    clearTimeout(hideTimer);
+    submenu.classList.add("is-open");
+    submenu.setAttribute("aria-hidden", "false");
+  }
+
+  function scheduleClose() {
+    hideTimer = setTimeout(function () {
+      submenu.classList.remove("is-open");
+      submenu.setAttribute("aria-hidden", "true");
+    }, 150);
+  }
+
+  triggers.forEach(function (li) {
+    li.addEventListener("mouseenter", open);
+    li.addEventListener("mouseleave", scheduleClose);
+  });
+  submenu.addEventListener("mouseenter", open);
+  submenu.addEventListener("mouseleave", scheduleClose);
+})();
+
+// Mobile menu — open/close, accordion, language toggle
+(function () {
+  const trigger = document.querySelector("header .menu");
+  const overlay = document.querySelector(".mobile-menu");
+  if (!trigger || !overlay) return;
+
+  function openMenu() {
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    overlay.classList.remove("is-open");
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  trigger.addEventListener("click", openMenu);
+  overlay.querySelectorAll("[data-mm-close]").forEach(function (el) {
+    el.addEventListener("click", closeMenu);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && overlay.classList.contains("is-open")) closeMenu();
+  });
+
+  overlay
+    .querySelectorAll(".mm-item--has-sub > .mm-link")
+    .forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        btn.parentElement.classList.toggle("is-expanded");
+      });
+    });
+
+  const langBtn = overlay.querySelector(".mm-lang");
+  const headerLang = document.querySelector("header .contact .lang-switch");
+  if (langBtn && headerLang) {
+    langBtn.addEventListener("click", function () {
+      headerLang.click();
+    });
+  }
+})();

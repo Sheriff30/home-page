@@ -14,25 +14,69 @@
 
           <nav>
             <ul>
-              <li>
+              <li class="has-dropdown">
                 <a href="#" data-en="Courses">Kurse</a>
                 <img src="./assets/arrow-down.svg" alt="arrow icon" />
               </li>
-              <li>
+              <li class="has-dropdown">
                 <a href="#" data-en="Exam Preparation">Prüfungsvorbereitung</a>
                 <img src="./assets/arrow-down.svg" alt="arrow icon" />
               </li>
-              <li>
+              <li class="has-dropdown">
                 <a href="#" data-en="Qualification">Qualifizierung</a>
                 <img src="./assets/arrow-down.svg" alt="arrow icon" />
               </li>
               <li><a href="#" data-en="Coaching">Coaching</a></li>
               <li><a href="#" data-en="Visa">Visa</a></li>
-              <li>
+              <li class="has-dropdown">
                 <a href="#" data-en="More">Weiteres</a>
                 <img src="./assets/arrow-down.svg" alt="arrow icon" />
               </li>
             </ul>
+
+            <div class="nav-submenu" aria-hidden="true">
+              <div class="nav-submenu-list">
+                <a href="#" class="nav-submenu-item">
+                  <h4 data-en="Courses">Kurse</h4>
+                  <p
+                    data-en="Unlock knowledge with expert-led courses designed to upgrade your career and open future opportunities."
+                  >
+                    Erweitere dein Wissen mit Kursen von Expert:innen, die deine
+                    Karriere voranbringen und neue Chancen eröffnen.
+                  </p>
+                </a>
+                <a href="#" class="nav-submenu-item">
+                  <h4 data-en="Exam Preparation">Prüfungsvorbereitung</h4>
+                  <p
+                    data-en="Learn anytime, anywhere with structured modules and resources built to make your journey smooth."
+                  >
+                    Lerne jederzeit und überall mit strukturierten Modulen und
+                    Materialien, die deinen Weg reibungslos machen.
+                  </p>
+                </a>
+                <a href="#" class="nav-submenu-item">
+                  <h4 data-en="Qualification">Qualifizierung</h4>
+                  <p
+                    data-en="Learn anytime, anywhere with structured modules and resources built to make your journey smooth."
+                  >
+                    Lerne jederzeit und überall mit strukturierten Modulen und
+                    Materialien, die deinen Weg reibungslos machen.
+                  </p>
+                </a>
+                <a href="#" class="nav-submenu-item">
+                  <h4 data-en="Coaching">Coaching</h4>
+                  <p
+                    data-en="Learn anytime, anywhere with structured modules and resources built to make your journey smooth."
+                  >
+                    Lerne jederzeit und überall mit strukturierten Modulen und
+                    Materialien, die deinen Weg reibungslos machen.
+                  </p>
+                </a>
+              </div>
+              <div class="nav-submenu-media">
+                <img src="./assets/menu-photo.png" alt="" />
+              </div>
+            </div>
           </nav>
 
           <div class="contact">
@@ -44,6 +88,124 @@
 
           <div class="menu">
             <img src="./assets/menu-icon.svg" alt="menu icon" />
+          </div>
+
+          <div class="mobile-menu" aria-hidden="true">
+            <div class="mobile-menu-backdrop" data-mm-close></div>
+            <div
+              class="mobile-menu-panel"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu"
+            >
+              <button
+                class="mobile-menu-close"
+                type="button"
+                data-mm-close
+                aria-label="Close menu"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  aria-hidden="true"
+                >
+                  <path d="M6 6l12 12M18 6L6 18" />
+                </svg>
+              </button>
+
+              <nav class="mobile-menu-nav">
+                <div class="mm-item mm-item--has-sub">
+                  <button class="mm-link" type="button">
+                    <span data-en="Courses">Kurse</span>
+                    <img
+                      src="./assets/arrow-down.svg"
+                      alt=""
+                      class="mm-chevron"
+                    />
+                  </button>
+                  <div class="mm-sub">
+                    <div class="mm-sub-inner">
+                      <a href="#">Berufssprachkurs B2</a>
+                      <a href="#" data-en="Integration Course"
+                        >Integrationskurs</a
+                      >
+                      <a href="#">Brückenkurs B1</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="mm-item mm-item--has-sub">
+                  <button class="mm-link" type="button">
+                    <span data-en="Exam Preparation">Prüfungsvorbereitung</span>
+                    <img
+                      src="./assets/arrow-down.svg"
+                      alt=""
+                      class="mm-chevron"
+                    />
+                  </button>
+                  <div class="mm-sub">
+                    <div class="mm-sub-inner">
+                      <a href="#">telc B2</a>
+                      <a href="#">DTZ</a>
+                      <a href="#">TestDaF</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="mm-item mm-item--has-sub">
+                  <button class="mm-link" type="button">
+                    <span data-en="Qualification">Qualifizierung</span>
+                    <img
+                      src="./assets/arrow-down.svg"
+                      alt=""
+                      class="mm-chevron"
+                    />
+                  </button>
+                  <div class="mm-sub">
+                    <div class="mm-sub-inner">
+                      <a href="#" data-en="Nursing">Pflege</a>
+                      <a href="#" data-en="IT &amp; Technology">IT &amp; Technik</a>
+                      <a href="#" data-en="Commercial">Kaufmännisch</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="mm-item">
+                  <a href="#" class="mm-link" data-en="Coaching">Coaching</a>
+                </div>
+                <div class="mm-item">
+                  <a href="#" class="mm-link" data-en="Visa">Visa</a>
+                </div>
+                <div class="mm-item mm-item--has-sub">
+                  <button class="mm-link" type="button">
+                    <span data-en="More">Weiteres</span>
+                    <img
+                      src="./assets/arrow-down.svg"
+                      alt=""
+                      class="mm-chevron"
+                    />
+                  </button>
+                  <div class="mm-sub">
+                    <div class="mm-sub-inner">
+                      <a href="#" data-en="About us">Über uns</a>
+                      <a href="#" data-en="Locations">Standorte</a>
+                      <a href="#" data-en="Contact">Kontakt</a>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+
+              <div class="mobile-menu-actions">
+                <a href="tel:+49301245678" class="mm-phone">+49 30 1245678</a>
+                <button
+                  class="mm-lang"
+                  type="button"
+                  aria-label="Switch language"
+                >
+                  <img src="./assets/lang-icon.svg" alt="" />
+                </button>
+              </div>
+            </div>
           </div>
         </header>
 
