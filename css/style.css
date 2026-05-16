@@ -2689,13 +2689,13 @@ header .contact div {
 /* ===================== PRODUCT SECTION 2 — INTRO ===================== */
 .prod-intro {
   background: #fff;
+  padding: 96px 22px;
 }
 
 .pi-inner {
   max-width: 1240px;
   width: 100%;
   margin: 0 auto;
-  padding: 96px 22px;
   display: flex;
   align-items: flex-start;
   gap: 56px;
@@ -2733,13 +2733,13 @@ header .contact div {
 /* ===================== PRODUCT SECTION 3 — COURSES + FAQ ============= */
 .prod-courses {
   background: #fff;
+  padding: 8px 22px 70px;
 }
 
 .pcr-inner {
   max-width: 1240px;
   width: 100%;
   margin: 0 auto;
-  padding: 8px 22px 70px;
 }
 
 .pcr-grid {
@@ -3028,11 +3028,14 @@ header .contact div {
   margin: 52px 0 0;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
+  .prod-intro {
+    padding: 64px 20px;
+  }
+
   .pi-inner {
     flex-direction: column;
     gap: 16px;
-    padding: 64px 20px;
   }
 
   .pi-heading {
@@ -3059,7 +3062,7 @@ header .contact div {
 }
 
 @media screen and (max-width: 600px) {
-  .pi-inner {
+  .prod-intro {
     padding: 48px 16px;
   }
 
@@ -3067,7 +3070,7 @@ header .contact div {
     font-size: 29px;
   }
 
-  .pcr-inner {
+  .prod-courses {
     padding: 8px 16px 56px;
   }
 
@@ -3091,5 +3094,117 @@ header .contact div {
   .pcr-table-btn {
     padding: 8px 13px;
     font-size: 12px;
+  }
+}
+
+/* ===================== PRODUCT SECTION 4 — HIGHLIGHTS ================ */
+.prod-highlights {
+  background: #fff;
+  padding: 70px 22px 96px;
+}
+
+.phl-inner {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.phl-title {
+  text-align: center;
+  color: #1a1d1f;
+  font-family: Archia;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -1.2px;
+  margin-bottom: 42px;
+}
+
+.phl-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 24px;
+}
+
+.phl-card {
+  display: flex;
+  flex-direction: column;
+  background: #cdd91e;
+  border-radius: 22px;
+  padding: 34px;
+}
+
+.phl-card h3 {
+  color: #1a1d1f;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.phl-card p {
+  color: #2c3514;
+  font-size: 15.5px;
+  line-height: 1.62;
+}
+
+.phl-photo {
+  border-radius: 22px;
+  overflow: hidden;
+  min-height: 250px;
+}
+
+.phl-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media screen and (max-width: 900px) {
+  .prod-highlights {
+    padding: 0 16px 56px 20px;
+  }
+
+  .phl-title {
+    font-size: 30px;
+    margin-bottom: 28px;
+  }
+
+  .phl-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+
+  .phl-photo {
+    height: 250px;
+  }
+
+  .phl-grid > :nth-child(1) {
+    order: 1;
+  }
+  .phl-grid > :nth-child(2) {
+    order: 2;
+  }
+  .phl-grid > :nth-child(3) {
+    order: 5;
+  }
+  .phl-grid > :nth-child(4) {
+    order: 4;
+  }
+  .phl-grid > :nth-child(5) {
+    order: 3;
+  }
+  .phl-grid > :nth-child(6) {
+    order: 6;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .phl-title {
+    font-size: 26px;
+  }
+
+  .phl-card {
+    padding: 26px;
   }
 }

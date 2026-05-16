@@ -396,6 +396,14 @@ console.log("Website loaded successfully!");
       ease: "back.out(1.4)",
     },
     { sel: ".prod-courses .pcr-faq", from: { opacity: 0, x: 70 } },
+
+    // Product page — Section 4 (highlights): title rises, cells stagger up
+    { sel: ".prod-highlights .phl-title", from: { opacity: 0, y: 40 } },
+    {
+      sel: ".prod-highlights .phl-grid > *",
+      from: { opacity: 0, y: 55 },
+      stagger: 0.09,
+    },
   ];
 
   const NEUTRAL = { opacity: 1, x: 0, y: 0, scale: 1, rotation: 0 };
