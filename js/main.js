@@ -404,6 +404,21 @@ console.log("Website loaded successfully!");
       from: { opacity: 0, y: 55 },
       stagger: 0.09,
     },
+
+    // Product page — Section 5 (catalog): heading slides in, filters pop, cards glide from the right
+    { sel: ".prod-courses5 .pc5-title", from: { opacity: 0, x: -50 } },
+    { sel: ".prod-courses5 .pc5-intro", from: { opacity: 0, y: 30 } },
+    {
+      sel: ".prod-courses5 .pc5-filter",
+      from: { opacity: 0, scale: 0.6 },
+      ease: "back.out(1.6)",
+      stagger: 0.07,
+    },
+    {
+      sel: ".prod-courses5 .pc5-card",
+      from: { opacity: 0, x: 70 },
+      stagger: 0.1,
+    },
   ];
 
   const NEUTRAL = { opacity: 1, x: 0, y: 0, scale: 1, rotation: 0 };
@@ -462,7 +477,7 @@ console.log("Website loaded successfully!");
 
 // Course carousel + FAQ accordion (product page)
 (function () {
-  // --- Course carousel (looping) ---
+  // --- Course carousel (steps by one card, clamps at both ends) ---
   document.querySelectorAll("[data-carousel]").forEach(function (root) {
     const track = root.querySelector("[data-carousel-track]");
     const prev = root.querySelector("[data-carousel-prev]");
@@ -471,24 +486,52 @@ console.log("Website loaded successfully!");
     const slides = track.children;
     let index = 0;
 
-    function update() {
+    function metrics() {
       const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-      const step = slides[0].getBoundingClientRect().width + gap;
-      track.style.transform = "translateX(" + -index * step + "px)";
+      const slideW = slides[0].getBoundingClientRect().width + gap;
+      let maxIndex = 0;
+      if (slideW > 0) {
+        const viewport = track.parentElement;
+        const visible = Math.max(
+          1,
+          Math.round((viewport.clientWidth + gap) / slideW)
+        );
+        maxIndex = Math.max(0, slides.length - visible);
+      }
+      return { slideW: slideW, maxIndex: maxIndex };
+    }
+
+    function update() {
+      const m = metrics();
+      index = Math.min(Math.max(index, 0), m.maxIndex);
+      track.style.transform = "translateX(" + -index * m.slideW + "px)";
+      if (prev) prev.disabled = index <= 0;
+      if (next) next.disabled = index >= m.maxIndex;
     }
 
     if (prev)
       prev.addEventListener("click", function () {
-        index = (index - 1 + slides.length) % slides.length;
+        index--;
         update();
       });
     if (next)
       next.addEventListener("click", function () {
-        index = (index + 1) % slides.length;
+        index++;
         update();
       });
     window.addEventListener("resize", update);
     update();
+  });
+
+  // --- Filter pill groups (visual active state) ---
+  document.querySelectorAll("[data-filter-group]").forEach(function (group) {
+    group.addEventListener("click", function (e) {
+      const btn = e.target.closest("[data-filter]");
+      if (!btn || !group.contains(btn)) return;
+      group.querySelectorAll("[data-filter]").forEach(function (b) {
+        b.classList.toggle("is-active", b === btn);
+      });
+    });
   });
 
   // --- FAQ accordion (one panel open at a time) ---

@@ -3208,3 +3208,250 @@ header .contact div {
     padding: 26px;
   }
 }
+
+/* ===================== PRODUCT SECTION 5 — COURSE CATALOG =========== */
+.prod-courses5 {
+  background: #cdd91e;
+  padding: 90px 22px;
+}
+
+.pc5-inner {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.pc5-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 56px;
+  margin-bottom: 36px;
+}
+
+.pc5-title {
+  flex: 1;
+  color: #1a1d1f;
+  font-family: Archia;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -1.6px;
+}
+
+.pc5-intro {
+  flex: 1;
+  padding-top: 6px;
+  color: #33400f;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.pc5-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.pc5-filter {
+  padding: 11px 22px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: #21292e;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.pc5-filter:hover {
+  background: #f3f5e1;
+}
+
+.pc5-filter.is-active {
+  color: #fff;
+  background: #1a1d1f;
+  border-color: #1a1d1f;
+}
+
+.pc5-viewport {
+  overflow: hidden;
+}
+
+.pc5-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pc5-card {
+  flex: 0 0 360px;
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid #e4e7ec;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.pc5-card-img {
+  margin: -22px -22px 18px;
+}
+
+.pc5-card-img img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.pc5-card-badge {
+  align-self: flex-start;
+  padding: 5px 13px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #00557f;
+  background: #e6f7ff;
+  border: 1px solid #9ed4ec;
+  border-radius: 9px;
+  margin-bottom: 16px;
+}
+
+.pc5-card h3 {
+  color: #1a1d1f;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  margin-bottom: 10px;
+}
+
+.pc5-card p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: #5b6b78;
+  font-size: 15px;
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+
+.pc5-card-divider {
+  margin-top: auto;
+  border: none;
+  border-top: 1px solid #e4e7ec;
+}
+
+.pc5-enroll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #fff;
+  background: #038dce;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.pc5-enroll:hover {
+  background: #0277ad;
+}
+
+.pc5-enroll img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+
+.pc5-arrows {
+  display: flex;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.pc5-arrow {
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+}
+
+.pc5-arrow svg {
+  width: 21px;
+  height: 21px;
+}
+
+.pc5-arrow--prev {
+  background: transparent;
+  border: 1.6px solid #1a1d1f;
+  color: #1a1d1f;
+}
+
+.pc5-arrow--prev:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.pc5-arrow--next {
+  background: #fff;
+  border: 1.6px solid #fff;
+  color: #1a1d1f;
+}
+
+.pc5-arrow--next:hover {
+  background: #f3f5e1;
+  border-color: #f3f5e1;
+}
+
+.pc5-arrow:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+@media screen and (max-width: 900px) {
+  .prod-courses5 {
+    padding: 64px 20px;
+  }
+
+  .pc5-head {
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .pc5-title {
+    font-size: 34px;
+    letter-spacing: -1.2px;
+  }
+
+  .pc5-card {
+    flex-basis: 320px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .prod-courses5 {
+    padding: 52px 16px;
+  }
+
+  .pc5-title {
+    font-size: 28px;
+  }
+
+  .pc5-card {
+    flex-basis: 82%;
+  }
+}
