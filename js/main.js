@@ -383,7 +383,11 @@ console.log("Website loaded successfully!");
 
     // Footer
     { sel: ".site-footer .footer-top", from: { opacity: 0, y: 40 } },
-    { sel: ".site-footer .footer-bottom", from: { opacity: 0, y: 20 } },
+    {
+      sel: ".site-footer .footer-bottom",
+      from: { opacity: 0, y: 20 },
+      start: "top 97%",
+    },
 
     // Product page — Section 2 (intro): heading slides from the left, paragraph rises
     { sel: ".prod-intro .pi-heading", from: { opacity: 0, x: -60 } },
@@ -436,6 +440,10 @@ console.log("Website loaded successfully!");
       from: { opacity: 0, scale: 0.88 },
       ease: "power3.out",
     },
+
+    // Product page — Section 8 (contact): the two cards converge from opposite sides
+    { sel: ".prod-contact .pcc-info", from: { opacity: 0, x: -72 } },
+    { sel: ".prod-contact .pcc-form", from: { opacity: 0, x: 72 } },
   ];
 
   const NEUTRAL = { opacity: 1, x: 0, y: 0, scale: 1, rotation: 0 };
@@ -451,7 +459,7 @@ console.log("Website loaded successfully!");
 
     gsap.set(items, cfg.from);
     ScrollTrigger.batch(items, {
-      start: "top 88%",
+      start: cfg.start || "top 88%",
       onEnter: function (batch) {
         gsap.to(batch, {
           opacity: 1,
@@ -621,5 +629,38 @@ console.log("Website loaded successfully!");
     if (next) next.addEventListener("click", function () { go(1); });
     window.addEventListener("resize", render);
     render();
+  });
+})();
+
+// Contact form (product page) — inline validation + confirmation
+(function () {
+  const form = document.querySelector(".pcc-form");
+  if (!form) return;
+  const feedback = form.querySelector(".pcc-form-feedback");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const fields = form.querySelectorAll("input, textarea");
+    let valid = true;
+    fields.forEach(function (f) {
+      if (!f.value.trim()) valid = false;
+    });
+
+    if (!valid) {
+      feedback.textContent = "Bitte fülle alle Felder aus.";
+      feedback.className = "pcc-form-feedback is-error";
+      return;
+    }
+
+    feedback.textContent = "Danke! Wir melden uns in Kürze bei dir.";
+    feedback.className = "pcc-form-feedback is-success";
+    form.reset();
+  });
+
+  form.addEventListener("input", function () {
+    if (feedback.textContent) {
+      feedback.textContent = "";
+      feedback.className = "pcc-form-feedback";
+    }
   });
 })();

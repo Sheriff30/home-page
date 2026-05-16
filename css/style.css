@@ -3897,3 +3897,263 @@ header .contact div {
     font-size: 8px;
   }
 }
+
+/* --- Product page Section 8 (contact) --- */
+.prod-contact {
+  padding: 92px 22px 170px;
+}
+
+.pcc-inner {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.pcc-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 540px;
+  background: #3f86c5;
+  border-radius: 30px;
+  padding: 64px 552px 64px 64px;
+  color: #ffffff;
+}
+
+.pcc-info-title {
+  max-width: 420px;
+  font-family: Archia;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+}
+
+.pcc-info-text {
+  max-width: 444px;
+  margin-top: 22px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.pcc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 38px;
+}
+
+.pcc-btn {
+  padding: 16px 36px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1d1f;
+  border-radius: 100px;
+  text-decoration: none;
+  transition:
+    transform 0.18s ease,
+    background 0.2s ease;
+}
+
+.pcc-btn:hover {
+  transform: translateY(-2px);
+}
+
+.pcc-btn-primary {
+  background: #cdd91e;
+}
+
+.pcc-btn-primary:hover {
+  background: #c2cf12;
+}
+
+.pcc-btn-secondary {
+  background: #ffffff;
+}
+
+.pcc-btn-secondary:hover {
+  background: #eef1f4;
+}
+
+.pcc-form {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 34px;
+  height: max-content;
+  margin: auto 0;
+  width: 486px;
+  z-index: 2;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 40px 38px 46px;
+  box-shadow: 0 23.906px 70px 0 rgba(0, 0, 0, 0.1);
+}
+
+.pcc-form-title {
+  text-align: center;
+  color: #1a1d1f;
+  font-family: Archia;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+.pcc-form-sub {
+  margin: 6px auto 24px;
+  max-width: 320px;
+  text-align: center;
+  color: #5b6b78;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+.pcc-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 17px 20px;
+  background: #eef0f2;
+  border-radius: 14px;
+  border: 1.5px solid transparent;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.pcc-field:focus-within {
+  background: #e7eef4;
+  border-color: #9cc6e4;
+}
+
+.pcc-field--message {
+  align-items: flex-start;
+}
+
+.pcc-field-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.pcc-field--message .pcc-field-icon {
+  margin-top: 2px;
+}
+
+.pcc-field input,
+.pcc-field textarea {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: 15px;
+  color: #1a1d1f;
+}
+
+.pcc-field textarea {
+  resize: none;
+  min-height: 150px;
+  line-height: 1.55;
+}
+
+.pcc-field input::placeholder,
+.pcc-field textarea::placeholder {
+  color: #8a98a3;
+}
+
+.pcc-submit {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 17px 42px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1d1f;
+  background: #cdd91e;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    background 0.2s ease;
+}
+
+.pcc-submit:hover {
+  background: #c2cf12;
+  transform: translateY(-2px);
+}
+
+.pcc-form-feedback {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.pcc-form-feedback.is-error {
+  color: #c0392b;
+}
+
+.pcc-form-feedback.is-success {
+  color: #2e7d32;
+}
+
+@media screen and (max-width: 980px) {
+  .prod-contact {
+    padding: 0px 16px 76px 16px;
+  }
+
+  .pcc-info {
+    min-height: 0;
+    padding: 50px 16px 330px;
+    border-radius: 26px;
+    text-align: center;
+  }
+
+  .pcc-info-title {
+    max-width: none;
+  }
+
+  .pcc-info-text {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pcc-actions {
+    justify-content: center;
+  }
+
+  .pcc-form {
+    position: static;
+    top: auto;
+    bottom: auto;
+    height: auto;
+    width: auto;
+    margin: -280px 14px 0;
+    padding: 34px 26px 38px;
+  }
+
+  .pcc-submit {
+    align-self: stretch;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .pcc-info-title {
+    font-size: 27px;
+    letter-spacing: -0.8px;
+  }
+
+  .pcc-form-title {
+    font-size: 25px;
+  }
+
+  .pcc-btn {
+    padding: 14px 26px;
+  }
+}
