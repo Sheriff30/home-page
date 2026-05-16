@@ -419,6 +419,15 @@ console.log("Website loaded successfully!");
       from: { opacity: 0, x: 70 },
       stagger: 0.1,
     },
+
+    // Product page — Section 6 (process): title rises, step cards rise + scale in left-to-right
+    { sel: ".prod-process .pp-title", from: { opacity: 0, y: 40 } },
+    {
+      sel: ".prod-process .pp-step",
+      from: { opacity: 0, y: 64, scale: 0.92 },
+      ease: "back.out(1.4)",
+      stagger: 0.13,
+    },
   ];
 
   const NEUTRAL = { opacity: 1, x: 0, y: 0, scale: 1, rotation: 0 };
@@ -546,6 +555,32 @@ console.log("Website loaded successfully!");
           o.classList.remove("is-open");
         });
       if (!wasOpen) item.classList.add("is-open");
+    });
+  });
+})();
+
+// Process steps — click to expand one step at a time (product page)
+(function () {
+  document.querySelectorAll("[data-process]").forEach(function (group) {
+    const steps = group.querySelectorAll("[data-process-step]");
+    if (!steps.length) return;
+
+    function activate(step) {
+      steps.forEach(function (s) {
+        s.classList.toggle("is-active", s === step);
+      });
+    }
+
+    steps.forEach(function (step) {
+      step.addEventListener("click", function () {
+        activate(step);
+      });
+      step.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          activate(step);
+        }
+      });
     });
   });
 })();

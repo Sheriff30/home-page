@@ -3211,7 +3211,7 @@ header .contact div {
 
 /* ===================== PRODUCT SECTION 5 — COURSE CATALOG =========== */
 .prod-courses5 {
-  background: #cdd91e;
+  background: #cad51e;
   padding: 90px 22px;
 }
 
@@ -3263,7 +3263,9 @@ header .contact div {
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 100px;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .pc5-filter:hover {
@@ -3387,7 +3389,10 @@ header .contact div {
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .pc5-arrow svg {
@@ -3453,5 +3458,186 @@ header .contact div {
 
   .pc5-card {
     flex-basis: 82%;
+  }
+}
+
+/* --- Product page Section 6 (process / steps) --- */
+.prod-process {
+  padding: 0 16px;
+  background: linear-gradient(180deg, #cad51e 0, #cad51e 150px, #fff 150px);
+  position: relative;
+}
+
+.pp-panel {
+  background: linear-gradient(180deg, #fff 30.53%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 44px 44px 0 0;
+  padding: 64px 16px;
+  overflow: hidden;
+  max-width: 1383px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.pp-shape {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pp-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.pp-title {
+  max-width: 620px;
+  margin: 0 auto 54px;
+  text-align: center;
+  color: #1a1d1f;
+  font-family: Archia;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -1.6px;
+}
+
+.pp-steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 18px;
+}
+
+.pp-step {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 392px;
+  padding: 30px 26px;
+  background: #ffffff;
+  border: 1px solid #d4e7f2;
+  border-radius: 20px;
+  cursor: pointer;
+  transition:
+    flex-grow 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.pp-step:hover {
+  border-color: #9fcfe6;
+}
+
+.pp-step:focus-visible {
+  outline: 2px solid #038dce;
+  outline-offset: 3px;
+}
+
+.pp-step.is-active {
+  flex-grow: 2.1;
+  background: linear-gradient(170deg, #f0f8fc 0%, #d2e9f6 100%);
+  border-color: #7cbfdf;
+  box-shadow: 0 22px 40px -24px rgba(3, 141, 206, 0.5);
+}
+
+.pp-step-num {
+  color: #9aa7b1;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  transition: color 0.35s ease;
+}
+
+.pp-step.is-active .pp-step-num {
+  color: #1a1d1f;
+}
+
+.pp-step-title {
+  margin-top: auto;
+  color: #5b6b78;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+  transition:
+    color 0.35s ease,
+    margin 0.35s ease;
+}
+
+.pp-step.is-active .pp-step-title {
+  margin-top: 16px;
+  color: #1a1d1f;
+}
+
+.pp-step-desc {
+  margin-top: 16px;
+  color: #4a5560;
+  font-size: 15px;
+  line-height: 1.62;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    opacity 0.35s ease,
+    max-height 0.45s ease,
+    margin 0.35s ease;
+}
+
+.pp-step.is-active .pp-step-desc {
+  opacity: 1;
+  max-height: 320px;
+}
+
+@media screen and (max-width: 900px) {
+  .prod-process {
+    padding: 48px 14px 0;
+  }
+
+  .pp-panel {
+    border-radius: 32px;
+    padding: 48px 16px;
+  }
+
+  .pp-shape {
+    left: 0;
+    bottom: 0;
+    top: 200px;
+  }
+
+  .pp-title {
+    font-size: 30px;
+    letter-spacing: -1px;
+    margin-bottom: 36px;
+  }
+
+  .pp-steps {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .pp-step {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 24px 22px;
+  }
+
+  .pp-step-title {
+    margin-top: 14px;
+  }
+
+  .pp-step.is-active {
+    flex-grow: 1;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .pp-title {
+    font-size: 25px;
   }
 }
