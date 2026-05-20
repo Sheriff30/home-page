@@ -552,38 +552,173 @@
             </button>
           </div>
 
-          <div class="category-card">
+          <div class="category-card" data-state="quiz">
             <div class="category-card-left">
-              <span class="category-step">1/3</span>
-              <h3 data-en="Choose your course">Wähle deinen Kurs</h3>
-              <p
-                class="category-question"
-                data-en="In which area would you like to develop your skills?"
-              >
-                In welchem Bereich möchtest du dich weiterbilden?
-              </p>
-              <form class="category-options">
-                <label class="category-option">
-                  <input type="radio" name="bereich" value="deutsch" />
-                  <span data-en="German for work">Deutsch für den Beruf</span>
-                </label>
-                <label class="category-option">
-                  <input type="radio" name="bereich" value="it" />
-                  <span data-en="IT &amp; Digital">IT &amp; Digitales</span>
-                </label>
-                <label class="category-option">
-                  <input type="radio" name="bereich" value="coaching" />
-                  <span data-en="Coaching &amp; Career">Coaching &amp; Karriere</span>
-                </label>
-              </form>
-              <a href="#" class="category-btn" data-en="Find a course">
-                Kurs finden
-                <img src="./assets/arrow-right.svg" alt="arrow right" />
-              </a>
-              <p class="category-feedback" role="status"></p>
+              <div class="category-slides">
+                <!-- Slide 1 -->
+                <div class="category-slide is-active" data-slide="1">
+                  <span class="category-step" data-en="Step 1 of 3">1/3</span>
+                  <h3 data-en="Choose your course">Wähle deinen Kurs</h3>
+                  <p
+                    class="category-question"
+                    data-en="In which area would you like to develop your skills?"
+                  >
+                    In welchem Bereich möchtest du dich weiterbilden?
+                  </p>
+                  <form class="category-options" data-question="bereich">
+                    <label class="category-option">
+                      <input type="radio" name="bereich" value="deutsch" />
+                      <span data-en="German for work">Deutsch für den Beruf</span>
+                    </label>
+                    <label class="category-option">
+                      <input type="radio" name="bereich" value="it" />
+                      <span data-en="IT &amp; Digital">IT &amp; Digitales</span>
+                    </label>
+                    <label class="category-option">
+                      <input type="radio" name="bereich" value="coaching" />
+                      <span data-en="Coaching &amp; Career">Coaching &amp; Karriere</span>
+                    </label>
+                  </form>
+                  <button
+                    type="button"
+                    class="category-btn"
+                    data-action="next"
+                    data-en="Continue"
+                  >
+                    Weiter
+                    <img src="./assets/arrow-right.svg" alt="arrow right" />
+                  </button>
+                  <p class="category-feedback" role="status"></p>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="category-slide" data-slide="2">
+                  <span class="category-step" data-en="Step 2 of 3">2/3</span>
+                  <h3 data-en="Your level">Dein Level</h3>
+                  <p
+                    class="category-question"
+                    data-en="What is your current skill level?"
+                  >
+                    Wie schätzt du dein aktuelles Niveau ein?
+                  </p>
+                  <form class="category-options" data-question="niveau">
+                    <label class="category-option">
+                      <input type="radio" name="niveau" value="anfaenger" />
+                      <span data-en="Beginner (A1–A2)">Anfänger (A1–A2)</span>
+                    </label>
+                    <label class="category-option">
+                      <input type="radio" name="niveau" value="mittel" />
+                      <span data-en="Intermediate (B1–B2)">Mittelstufe (B1–B2)</span>
+                    </label>
+                    <label class="category-option">
+                      <input type="radio" name="niveau" value="fortgeschritten" />
+                      <span data-en="Advanced (C1–C2)">Fortgeschritten (C1–C2)</span>
+                    </label>
+                  </form>
+                  <button
+                    type="button"
+                    class="category-btn"
+                    data-action="next"
+                    data-en="Continue"
+                  >
+                    Weiter
+                    <img src="./assets/arrow-right.svg" alt="arrow right" />
+                  </button>
+                  <p class="category-feedback" role="status"></p>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="category-slide" data-slide="3">
+                  <span class="category-step" data-en="Step 3 of 3">3/3</span>
+                  <h3 data-en="Your goal">Dein Ziel</h3>
+                  <p
+                    class="category-question"
+                    data-en="What do you want to achieve?"
+                  >
+                    Was möchtest du am Ende erreichen?
+                  </p>
+                  <form class="category-options" data-question="ziel">
+                    <label class="category-option">
+                      <input type="radio" name="ziel" value="beruf" />
+                      <span data-en="A new job in Germany">Neuer Beruf in Deutschland</span>
+                    </label>
+                    <label class="category-option">
+                      <input type="radio" name="ziel" value="weiterbildung" />
+                      <span data-en="Further training in my current job">Weiterbildung im aktuellen Job</span>
+                    </label>
+                    <label class="category-option">
+                      <input type="radio" name="ziel" value="zertifikat" />
+                      <span data-en="Certificate &amp; recognition">Zertifikat &amp; Anerkennung</span>
+                    </label>
+                  </form>
+                  <button
+                    type="button"
+                    class="category-btn"
+                    data-action="finish"
+                    data-en="Find a course"
+                  >
+                    Kurs finden
+                    <img src="./assets/arrow-right.svg" alt="arrow right" />
+                  </button>
+                  <p class="category-feedback" role="status"></p>
+                </div>
+
+                <!-- Result Slide -->
+                <div class="category-slide category-slide--result" data-slide="result">
+                  <span class="category-step" data-en="Your match">Dein Match</span>
+                  <h3 data-en="Your recommended courses">Deine empfohlenen Kurse</h3>
+                  <ul class="category-results">
+                    <li class="result-card">
+                      <span class="result-thumb"></span>
+                      <div class="result-meta">
+                        <strong>Berufssprachkurs B2</strong>
+                        <span data-en="Beginner–Advanced · 12 weeks">Anfänger–Fortgeschritten · 12 Wochen</span>
+                      </div>
+                      <span class="result-badge" data-en="✦ Best Match">✦ Best Match</span>
+                    </li>
+                    <li class="result-card">
+                      <span class="result-thumb"></span>
+                      <div class="result-meta">
+                        <strong>Berufssprachkurs B2</strong>
+                        <span data-en="Beginner–Advanced · 12 weeks">Anfänger–Fortgeschritten · 12 Wochen</span>
+                      </div>
+                    </li>
+                    <li class="result-card">
+                      <span class="result-thumb"></span>
+                      <div class="result-meta">
+                        <strong>Berufssprachkurs B2</strong>
+                        <span data-en="Beginner–Advanced · 12 weeks">Anfänger–Fortgeschritten · 12 Wochen</span>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="result-actions">
+                    <a href="#" class="category-btn" data-en="Enroll now">
+                      Jetzt einschreiben
+                      <img src="./assets/arrow-right.svg" alt="arrow right" />
+                    </a>
+                    <button
+                      type="button"
+                      class="category-link"
+                      data-action="restart"
+                      data-en="Retake quiz"
+                    >
+                      Quiz wiederholen
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="category-card-right">
               <img src="./assets/section4.png" alt="Person bei einem Kurs" />
+              <div class="category-badge" aria-hidden="true">
+                <span class="category-badge-icon">
+                  <img src="./assets/grad-cap.svg" alt="" />
+                </span>
+                <div class="category-badge-text">
+                  <strong>12,400+</strong>
+                  <span data-en="Students enrolled this month">Studierende diesen Monat</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

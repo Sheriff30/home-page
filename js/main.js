@@ -59,32 +59,111 @@ console.log("Website loaded successfully!");
   });
 })();
 
-// Category question form
+// Category multi-step quiz
 (function () {
-  const form = document.querySelector(".category-options");
-  const btn = document.querySelector(".category-btn");
-  const feedback = document.querySelector(".category-feedback");
-  if (!form || !btn || !feedback) return;
+  const card = document.querySelector(".category-card");
+  if (!card) return;
 
-  btn.addEventListener("click", function (e) {
-    e.preventDefault();
-    const selected = form.querySelector('input[name="bereich"]:checked');
-    if (!selected) {
-      feedback.textContent = "Bitte wähle zuerst einen Bereich aus.";
-      feedback.classList.remove("is-success");
-      feedback.classList.add("is-error", "is-visible");
-      return;
+  const slides = Array.from(card.querySelectorAll(".category-slide"));
+  if (!slides.length) return;
+
+  const labels = {
+    de: {
+      missing: "Bitte triff zuerst eine Auswahl.",
+    },
+    en: {
+      missing: "Please make a selection first.",
+    },
+  };
+
+  function currentLang() {
+    return document.documentElement.getAttribute("lang") === "en" ? "en" : "de";
+  }
+
+  function clearFeedback(slide) {
+    const fb = slide.querySelector(".category-feedback");
+    if (fb) fb.classList.remove("is-visible", "is-error", "is-success");
+  }
+
+  function showError(slide) {
+    const fb = slide.querySelector(".category-feedback");
+    if (!fb) return;
+    fb.textContent = labels[currentLang()].missing;
+    fb.classList.remove("is-success");
+    fb.classList.add("is-error", "is-visible");
+  }
+
+  function goTo(targetSlide) {
+    const current = slides.find((s) => s.classList.contains("is-active"));
+    if (!current || current === targetSlide) return;
+
+    current.classList.add("is-leaving");
+    current.classList.remove("is-active");
+
+    targetSlide.classList.remove("is-leaving");
+    // Force reflow so the entry transition plays from the initial state.
+    void targetSlide.offsetWidth;
+    targetSlide.classList.add("is-active");
+
+    window.setTimeout(function () {
+      current.classList.remove("is-leaving");
+    }, 600);
+
+    card.dataset.state =
+      targetSlide.dataset.slide === "result" ? "result" : "quiz";
+  }
+
+  function nextOf(slide) {
+    const idx = slides.indexOf(slide);
+    return slides[idx + 1] || null;
+  }
+
+  function resetAnswers() {
+    slides.forEach(function (slide) {
+      const inputs = slide.querySelectorAll('input[type="radio"]');
+      inputs.forEach(function (i) {
+        i.checked = false;
+      });
+      clearFeedback(slide);
+    });
+  }
+
+  card.addEventListener("click", function (e) {
+    const trigger = e.target.closest("[data-action]");
+    if (!trigger) return;
+    const action = trigger.dataset.action;
+    const slide = trigger.closest(".category-slide");
+    if (!slide) return;
+
+    if (action === "next" || action === "finish") {
+      e.preventDefault();
+      const form = slide.querySelector(".category-options");
+      const selected = form && form.querySelector('input[type="radio"]:checked');
+      if (!selected) {
+        showError(slide);
+        return;
+      }
+      clearFeedback(slide);
+      const target =
+        action === "finish"
+          ? slides.find((s) => s.dataset.slide === "result")
+          : nextOf(slide);
+      if (target) goTo(target);
     }
-    feedback.textContent =
-      "Super! Wir zeigen dir passende Kurse für „" +
-      selected.parentElement.querySelector("span").textContent +
-      "“.";
-    feedback.classList.remove("is-error");
-    feedback.classList.add("is-success", "is-visible");
+
+    if (action === "restart") {
+      e.preventDefault();
+      resetAnswers();
+      const first = slides.find((s) => s.dataset.slide === "1");
+      if (first) goTo(first);
+    }
   });
 
-  form.addEventListener("change", function () {
-    feedback.classList.remove("is-visible", "is-error", "is-success");
+  card.addEventListener("change", function (e) {
+    if (e.target.matches('input[type="radio"]')) {
+      const slide = e.target.closest(".category-slide");
+      if (slide) clearFeedback(slide);
+    }
   });
 })();
 
